@@ -1,7 +1,27 @@
 import streamlit as st
 from joblib import load
+import pandas as pd
+from utils import Transformador
 
+#Cor de fundo do listbox
+st.markdown('<style>div[role="listbox"] ul{background-color: #eee1f79e};</style>', unsafe_allow_html=True)
 
+def avaliar_mau(dict_respostas):
+    modelo = load('objetos/modelo.joblib')
+    features = load('objetos/features.joblib')
+
+    if dict_respostas['Anos_desempregado']> 0:
+        dict_respostas['Anos_empregado'] = dict_respostas['Anos_desempregado'] * -1
+
+    respostas = []
+    for coluna in features:
+        respostas.append(dict_respostas[coluna])
+    
+    df_novo_cliente = pd.DataFrame(data=[respostas], columns=features)
+    mau = modelo.predict(df_novo_cliente)[0]
+
+    return mau
+    
 st.image('img/bytebank_logo.png')
 st.write('# Simulador de Avaliação de crédito')
 
@@ -12,7 +32,7 @@ my_expander_2 = st.beta_expander('Pessoal')
 my_expander_3 = st.beta_expander('Familia')
 
 dict_respostas = {}
-lista_campos = load('objetos\lista_campos.joblib')
+lista_campos = load('objetos/lista_campos.joblib')
 
 with my_expander_1:
 
@@ -59,7 +79,7 @@ with my_expander_3:
     dict_respostas['Qtd_Filhos'] = col5_form.slider('Quantos filhos ?', help='Podemos mover a barra usando as setas do teclado', min_value=0, max_value=20, step=1)
 
 if st.button('Avaliar crédito'):
-    if True:
+    if avaliar_mau(dict_respostas):
         st.error('Crédito negado')
     else:
         st.success('Crédito aprovado')
