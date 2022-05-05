@@ -32,7 +32,7 @@ my_expander_2 = st.beta_expander('Pessoal')
 my_expander_3 = st.beta_expander('Familia')
 
 dict_respostas = {}
-lista_campos = load('objetos/lista_campos.joblib')
+lista_campos = load('Modulo06/avaliacao_credito/objetos/lista_campos.joblib')
 
 with my_expander_1:
 
