@@ -21,8 +21,8 @@ def avaliar_mau(dict_respostas):
     mau = modelo.predict(df_novo_cliente)[0]
 
     return mau
-    
-st.image('img/bytebank_logo.png')
+
+st.image('Modulo06/avaliacao_credito/img/bytebank_logo.png')
 st.write('# Simulador de Avaliação de crédito')
 
 my_expander_1 = st.beta_expander('Trabalho')
