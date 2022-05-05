@@ -22,7 +22,7 @@ def avaliar_mau(dict_respostas):
 
     return mau
     
-st.image('img/bytebank_logo.png')
+# st.image('img/bytebank_logo.png')
 st.write('# Simulador de Avaliação de crédito')
 
 my_expander_1 = st.beta_expander('Trabalho')
