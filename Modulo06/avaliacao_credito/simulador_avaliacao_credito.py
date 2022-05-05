@@ -7,8 +7,8 @@ from utils import Transformador
 st.markdown('<style>div[role="listbox"] ul{background-color: #eee1f79e};</style>', unsafe_allow_html=True)
 
 def avaliar_mau(dict_respostas):
-    modelo = load('objetos/modelo.joblib')
-    features = load('objetos/features.joblib')
+    modelo = load('Modulo06/avaliacao_credito/objetos/modelo.joblib')
+    features = load('Modulo06/avaliacao_credito/objetos/features.joblib')
 
     if dict_respostas['Anos_desempregado']> 0:
         dict_respostas['Anos_empregado'] = dict_respostas['Anos_desempregado'] * -1
